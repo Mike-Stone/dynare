@@ -111,7 +111,7 @@ class ParsingDriver;
 %token FILTER_ALGORITHM PROPOSAL_APPROXIMATION CUBATURE UNSCENTED MONTECARLO DISTRIBUTION_APPROXIMATION
 %token <string_val> NAME
 %token NAN_CONSTANT NO_STATIC NOBS NOCONSTANT NODISPLAY NOCORR NODIAGNOSTIC NOFUNCTIONS NO_HOMOTOPY
-%token NOGRAPH NOMOMENTS NOPRINT NORMAL_PDF SAVE_DRAWS MH_SCALE_FILE
+%token NOGRAPH NOMOMENTS NOPRINT NORMAL_PDF SAVE_DRAWS
 %token OBSERVATION_TRENDS OPTIM OPTIM_WEIGHTS ORDER OSR OSR_PARAMS MAX_DIM_COVA_GROUP ADVANCED OUTFILE OUTVARS OVERWRITE
 %token PARALLEL_LOCAL_FILES PARAMETERS PARAMETER_SET PARTIAL_INFORMATION PERFECT_FORESIGHT PERIODS PERIOD PLANNER_OBJECTIVE PLOT_CONDITIONAL_FORECAST PLOT_PRIORS PREFILTER PRESAMPLE
 %token PERFECT_FORESIGHT_SETUP PERFECT_FORESIGHT_SOLVER POSTERIOR_KERNEL_DENSITY
@@ -1653,7 +1653,6 @@ estimation_options : o_datafile
                    | o_mh_replic
                    | o_mh_drop
                    | o_mh_jscale
-                   | o_mh_scale_file
                    | o_optim
                    | o_mh_init_scale
                    | o_mode_file
@@ -2690,7 +2689,6 @@ o_mh_replic : MH_REPLIC EQUAL INT_NUMBER { driver.option_num("mh_replic", $3); }
 o_posterior_max_subsample_draws : POSTERIOR_MAX_SUBSAMPLE_DRAWS EQUAL INT_NUMBER { driver.option_num("posterior_max_subsample_draws", $3); };
 o_mh_drop : MH_DROP EQUAL non_negative_number { driver.option_num("mh_drop", $3); };
 o_mh_jscale : MH_JSCALE EQUAL non_negative_number { driver.option_num("mh_jscale", $3); };
-o_mh_scale_file : MH_SCALE_FILE EQUAL filename { driver.option_str("metropolis.proposal.scale_file", $3); };
 o_optim : OPTIM  EQUAL '(' optim_options ')';
 o_tarb_optim : TARB_OPTIM  EQUAL '(' tarb_optim_options ')';
 o_proposal_distribution : PROPOSAL_DISTRIBUTION EQUAL symbol { driver.option_str("proposal_distribution", $3); };
